@@ -1,0 +1,20 @@
+{
+  "name": "zk1-lixd",
+  "version": "1.0.0",
+  "description": "zk1-lixd",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev":"gulp dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaodanli/zk1-lixd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xiaodanli/zk1-lixd/issues"
+  },
+  "homepage": "https://github.com/xiaodanli/zk1-lixd#readme"
+}

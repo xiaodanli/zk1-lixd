@@ -12,6 +12,18 @@ var fs = require('fs');
 
 var path = require('path');
 
+gulp.task('devCss',function(){
+    return gulp.src('./src/scss/*.scss')
+    .pipe(sass())
+    .pipe(autoprefixer({
+        browsers:['last 2 versions']
+    }))
+    .pipe(gulp.dest('./src/css'))
+})
+
+gulp.task('watch',function(){
+    return gulp.watch('./src/scss/*.scss',gulp.series('devCss'))
+})
 
 gulp.task('devServer',function(){
     return gulp.src('src')
@@ -26,7 +38,7 @@ gulp.task('devServer',function(){
             }
 
             if(pathname === '/api/swiper'){  //接口
-                
+
             }else{ //静态文件
                 pathname = pathname === '/' ? 'index.html' : pathname;
 
@@ -35,3 +47,5 @@ gulp.task('devServer',function(){
         }
     }))
 })
+
+gulp.task('dev',gulp.series('devCss','devServer','watch'))
