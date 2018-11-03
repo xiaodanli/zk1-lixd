@@ -5,7 +5,8 @@
   "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev":"gulp dev"
+    "dev": "gulp dev",
+    "build":"gulp build"
   },
   "repository": {
     "type": "git",
@@ -16,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/xiaodanli/zk1-lixd/issues"
   },
-  "homepage": "https://github.com/xiaodanli/zk1-lixd#readme"
+  "homepage": "https://github.com/xiaodanli/zk1-lixd#readme",
+  "devDependencies": {
+    "gulp-htmlmin": "^5.0.1"
+  }
 }

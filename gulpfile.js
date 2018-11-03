@@ -6,6 +6,12 @@ var server = require('gulp-webserver');
 
 var autoprefixer = require('gulp-autoprefixer');
 
+var clean = require('gulp-clean-css');
+
+var uglify = require('gulp-uglify');
+
+var htmlmin = require('gulp-htmlmin'); //压缩html
+
 var url = require('url');
 
 var fs = require('fs');
@@ -26,7 +32,7 @@ gulp.task('watch',function(){
 })
 
 gulp.task('devServer',function(){
-    return gulp.src('src')
+    return gulp.src('build')
     .pipe(server({
         port:9090,
         middleware:function(req,res,next){
@@ -48,4 +54,34 @@ gulp.task('devServer',function(){
     }))
 })
 
+//开发环境
 gulp.task('dev',gulp.series('devCss','devServer','watch'))
+
+//线上环境
+
+gulp.task('buildCss',function(){
+    return gulp.src('./src/css/*.css')
+    .pipe(clean())
+    .pipe(gulp.dest('./build/css'))
+})
+
+gulp.task('buildUglify',function(){
+    return gulp.src('./src/js/*.js')
+    .pipe(uglify())
+    .pipe(gulp.dest('./build/js'))
+})
+
+gulp.task('copyJs',function(){
+    return gulp.src('./src/js/libs/*.js')
+    .pipe(gulp.dest('./build/js/libs'))
+})
+
+gulp.task('htmlmin',function(){
+    return gulp.src('./src/*.html')
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('./build'))
+})
+
+gulp.task('build',gulp.series('buildCss','buildUglify','copyJs','htmlmin'))
+
+
